@@ -1,0 +1,12 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/fonts.css);
+@import url(../blocks/page/page.css);
+@import url(../blocks/page/__content/page__content.css);
+/*---header---*/
+@import url(../blocks/header/header.css);
+/*---profile---*/
+@import url(../blocks/profile/profile.css);
+/*---elements---*/
+@import url(../blocks/elements/elements.css);
+/*---footer---*/
+@import url(../blocks/footer/footer.css);
