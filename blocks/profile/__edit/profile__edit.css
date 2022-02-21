@@ -1,0 +1,25 @@
+.profile__edit {
+    margin: 0;
+    background-color: black;
+    position: absolute;
+    top: 8px;
+    right: 19px;
+    border: 1px solid #FFFFFF;
+    cursor: pointer;
+}
+.profile__edit:hover {
+    opacity: 0.6;
+}
+
+@media screen and (min-width: 768px) {
+    .profile__edit {
+        right: 60px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .profile__edit {
+        right: 0;
+        top: 15px;
+    }
+}

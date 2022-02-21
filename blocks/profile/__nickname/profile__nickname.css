@@ -1,0 +1,22 @@
+.profile__nickname {
+    margin: 0;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 33px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 768px) {
+    .profile__nickname {
+        text-align: left;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .profile__nickname {
+        font-size: 42px;
+        line-height: 48px;
+    }
+}

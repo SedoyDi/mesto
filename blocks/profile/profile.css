@@ -1,0 +1,29 @@
+.profile {
+    display: grid;
+    min-width: 282px;
+    margin: 36px auto;
+    justify-items: center;
+}
+@media screen and (min-width: 540px) {
+    .profile {
+        margin: 36px 20px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        column-gap: 10px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .profile {
+        margin: 36px 20px;
+        grid-template-columns: 200px repeat(2, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        column-gap: 0;
+        align-items: end;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .profile {
+        margin-left: 0;
+    }
+}
