@@ -23,3 +23,16 @@
 /*---footer---*/
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+/*---popup---*/
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/___body/popup__body.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__form/_content/popup__form_content.css);
+@import url(../blocks/popup/__form/_title/popup__form_title.css);
+@import url(../blocks/popup/__form/_nickname-input/popup__form_nickname-input.css);
+@import url(../blocks/popup/__form/_profession-input/popup__form_profession-input.css);
+@import url(../blocks/popup/__form/_save-button/popup__form_save-button.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
+/*---animation---*/
+@import url(../blocks/animation/__popup/animation__popup.css);
+@import url(../blocks/animation/__form/animation__form.css);

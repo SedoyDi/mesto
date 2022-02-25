@@ -1,0 +1,13 @@
+.popup__form_content {
+    margin: 25px auto;
+    padding: 0;
+    list-style-type: none;
+    width: 238px;
+}
+
+@media screen and (min-width: 880px) {
+    .popup__form_content {
+        width: 358px;
+        margin: 35px auto;
+    }
+}

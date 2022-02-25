@@ -3,7 +3,7 @@
     background-color: black;
     border: 1px solid #FFFFFF;
     cursor: pointer;
-    height: 50px;
+    min-height: 50px;
     width: 282px;
 }
 
