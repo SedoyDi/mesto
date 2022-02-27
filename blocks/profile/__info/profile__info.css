@@ -6,7 +6,7 @@
 @media screen and (min-width: 768px) {
     .profile__info {
         margin: 0;
-        justify-self: start; 
+        justify-self: start;
         align-self: center;
     }
 }
