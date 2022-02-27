@@ -29,11 +29,11 @@
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__body/popup__body.css);
 @import url(../blocks/popup/__form/popup__form.css);
-@import url(../blocks/popup/__form/_title/form_title.css);
-@import url(../blocks/popup/__form/_nickname-input/form_nickname-input.css);
-@import url(../blocks/popup/__form/_profession-input/form_profession-input.css);
-@import url(../blocks/popup/__form/_content/form_content.css);
-@import url(../blocks/popup/__form/_save-button/form_save-button.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__nickname-input/popup__nickname-input.css);
+@import url(../blocks/popup/__profession-input/popup__profession-input.css);
+@import url(../blocks/popup/__content/popup__content.css);
+@import url(../blocks/popup/__save-button/popup__save-button.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 
