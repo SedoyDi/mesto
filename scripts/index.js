@@ -1,4 +1,4 @@
-// работа popup
+
 const openButton = document.querySelector('.profile__edit');
 const closeButton = document.querySelector('.popup__close-button');
 let popup = document.querySelector('.popup');
@@ -14,7 +14,6 @@ function popupClose() {
 openButton.addEventListener('click', popupOpen);
 closeButton.addEventListener('click', popupClose);
 
-// работа form
 let formElement = document.querySelector('.popup__form');
 
 let nameInput = document.querySelector('.popup__form_nickname-input');
