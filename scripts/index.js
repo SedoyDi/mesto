@@ -16,8 +16,8 @@ closeButton.addEventListener('click', popupClose);
 
 let formElement = document.querySelector('.popup__form');
 
-let nameInput = document.querySelector('.popup__form_nickname-input');
-let jobInput = document.querySelector('.popup__form_profession-input');
+let nameInput = document.querySelector('.form__nickname-input');
+let jobInput = document.querySelector('.form__profession-input');
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); 

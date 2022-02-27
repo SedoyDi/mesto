@@ -1,4 +1,4 @@
-.popup__form_save-button {
+.form__save-button {
     background-color: #000;
     color: #fff;
     width: 238px;
@@ -13,12 +13,12 @@
     cursor: pointer;
 }
 
-.popup__form_save-button:hover {
+.form__save-button:hover {
     opacity: 0.6;
 }
 
 @media screen and (min-width: 880px) {
-    .popup__form_save-button {
+    .form__save-button {
         width: 358px;
         min-height: 50px;
     }
