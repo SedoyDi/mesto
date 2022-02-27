@@ -1,4 +1,4 @@
-.form__content {
+.form_content {
     margin: 25px auto;
     padding: 0;
     list-style-type: none;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (min-width: 880px) {
-    .form__content {
+    .form_content {
         width: 358px;
         margin: 35px auto;
     }
