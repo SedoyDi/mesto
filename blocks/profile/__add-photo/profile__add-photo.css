@@ -1,7 +1,8 @@
 .profile__add-photo {
     margin: 0 19px;
-    background-color: black;
-    border: 1px solid #FFFFFF;
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
     cursor: pointer;
     min-height: 50px;
     width: 282px;

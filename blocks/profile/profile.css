@@ -25,5 +25,8 @@
 @media screen and (min-width: 1024px) {
     .profile {
         margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 47px;
+        grid-template-columns: 148px repeat(2, 1fr);
     }
 }

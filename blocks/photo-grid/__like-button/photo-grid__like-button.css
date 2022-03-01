@@ -9,8 +9,9 @@
 }
 
 .photo-grid__like-button:hover {
-    opacity: 0.6;
+    opacity: 0.5;
 }
 .photo-grid__like-button:active {
+    opacity: 1;
     background-image: url(../../../image/elements/active.svg);
 }

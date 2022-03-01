@@ -1,6 +1,6 @@
 .popup__body {
     display: flex;
-    margin-top: 123px;
+    align-items: center;
     justify-content: center;
     min-height: 100%;
 }

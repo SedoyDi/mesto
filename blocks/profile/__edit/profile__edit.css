@@ -1,6 +1,6 @@
 .profile__edit {
     margin: 0;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0);
     position: absolute;
     top: 8px;
     right: 19px;

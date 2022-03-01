@@ -1,6 +1,6 @@
 .profile__avatar {
     border-radius: 84px;
-    width: 168px;
+    width: 120px;
     margin: 0 auto;
 }
 
@@ -11,6 +11,6 @@
 }
 @media screen and (min-width: 900px) {
     .profile__avatar {
-        margin-left: -1px;
+        margin-left: 0;
     }
 }
