@@ -11,6 +11,8 @@
 }
 @media screen and (min-width: 900px) {
     .profile__avatar {
+        grid-row: 1/2;
         margin-left: 0;
+        align-self: center;
     }
 }

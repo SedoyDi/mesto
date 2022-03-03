@@ -1,11 +1,11 @@
-.popup__content {
+.popup__form-content {
     margin: 25px auto;
     width: 238px;
 }
 
 @media screen and (min-width: 880px) {
-    .popup__content {
+    .popup__form-content {
         width: 358px;
-        margin: 35px auto;
+        margin: 33px auto;
     }
 }
