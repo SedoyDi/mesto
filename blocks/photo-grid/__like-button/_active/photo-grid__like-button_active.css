@@ -1,0 +1,4 @@
+.photo-grid__like-button_active {
+    opacity: 1;
+    background-image: url(../../../../image/elements/active.svg);
+}
