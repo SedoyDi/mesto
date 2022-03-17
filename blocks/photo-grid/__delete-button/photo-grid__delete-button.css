@@ -10,3 +10,6 @@
     top: 20px;
     right: 20px;
 }
+.photo-grid__delete-button:hover {
+    opacity: 0.6;
+}
