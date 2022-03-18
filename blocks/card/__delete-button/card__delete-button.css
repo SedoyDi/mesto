@@ -1,15 +1,15 @@
-.photo-grid__delete-button {
+.card__delete-button {
     background-color: rgba(0, 0, 0, 0.0);
     border: none;
     cursor: pointer;
     width: 18px;
     min-height: 19px;
     align-self: center;
-    background-image: url(../../../image/elements/delete-button.svg);
+    background-image: url(../../../image/card/delete-button.svg);
     position: absolute;
     top: 20px;
     right: 20px;
 }
-.photo-grid__delete-button:hover {
+.card__delete-button:hover {
     opacity: 0.6;
 }

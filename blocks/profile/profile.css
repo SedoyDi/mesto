@@ -4,7 +4,7 @@
     margin: 40px auto;
     justify-items: center;
 }
-@media screen and (min-width: 540px) {
+@media screen and (min-width: 591px) {
     .profile {
         margin: 39px auto;
         grid-template-columns: repeat(2, 1fr);
@@ -16,12 +16,14 @@
 @media screen and (min-width: 768px) {
     .profile {
         grid-template-columns: 120px repeat(2, 1fr);
+        padding: 0 20px;
         column-gap: 0;
         align-items: end;
     }
 }
 @media screen and (min-width: 1024px) {
     .profile {
+        padding: 0;
         margin-left: 0;
         margin-right: 0;
         margin-bottom: 50px;
