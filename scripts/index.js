@@ -14,8 +14,8 @@ const placeInput = document.querySelector('#place');
 const placeLinkInput = document.querySelector('#place-link')
 const popupFullScreen = document.querySelector('#max-img');
 const buttonClosePopupFullScreen = document.querySelector('#close-btn-popup-max-img');
-const fullscrin = document.querySelector('.popup__max-img');
-const fullscrinTitle =document.querySelector('.popup__max-img-title');
+const fullScrin = document.querySelector('.popup__max-img');
+const fullScrinTitle =document.querySelector('.popup__max-img-title');
 const templateCard = document.querySelector('#template-card').content;
 const cardList = document.querySelector('#card-list');
 
@@ -46,8 +46,7 @@ function closeProfile (){
 
 
 function openCreateCard () {
-    placeInput.value = '';
-    placeLinkInput.value = '';
+    formCreateCard.reset()
     openPopup(popupCreateCard);
 };
 function submitCreateCard (evt) {
@@ -81,9 +80,9 @@ function createCard (element) {
 };
 
 function openPopupFullScreen (evt) {
-    fullscrin.src = evt.target.src;
-    fullscrin.alt = evt.target.alt;
-    fullscrinTitle.textContent = evt.target.alt;
+    fullScrin.src = evt.target.src;
+    fullScrin.alt = evt.target.alt;
+    fullScrinTitle.textContent = evt.target.alt;
     openPopup(popupFullScreen);
 };
 //иначе функция закрытия отказываеться работать при нажатии на крестик
