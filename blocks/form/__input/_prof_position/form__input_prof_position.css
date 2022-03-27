@@ -1,4 +1,4 @@
-.popup__input_place-link_position {
+.form__input_prof_position {
     padding: 0;
     margin-top: 30px;
     width: 100%;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (min-width: 880px) {
-    .popup__input_place-link_position {
+    .form__input_prof_position {
         margin-top: 28px;
     }
 }
