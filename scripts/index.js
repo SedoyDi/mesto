@@ -1,24 +1,65 @@
 const popupProfile = document.querySelector('#profile');
 const buttonProfileEdit = document.querySelector('.profile__edit');
 const buttonClosePopupProfile = document.querySelector('#close-btn-pup-profile');
-const formProfile = document.querySelector('#profile-edit');
+const formProfileEdit = document.querySelector('#profile-edit');
+const nickNameInput = document.querySelector('#name-input');
 const nickName = document.querySelector('.profile__nick-name');
-const nickNameInput = document.querySelector('#name');
 const profession = document.querySelector('.profile__profession');
-const professionInput = document.querySelector('#prof');
+const professionInput = document.querySelector('#profession-input');
 const popupCreateCard = document.querySelector('#create-card');
 const buttonAddCard = document.querySelector('.profile__add-photo');
 const buttonClosePopupCreateCard = document.querySelector('#close-btn-pup-card');
 const formCreateCard = document.querySelector('#form-create');
-const placeInput = document.querySelector('#place');
-const placeLinkInput = document.querySelector('#place-link')
+const placeInput = document.querySelector('#place-input');
+const placeLinkInput = document.querySelector('#place-link-input')
 const popupFullScreen = document.querySelector('#max-img');
 const buttonClosePopupFullScreen = document.querySelector('#close-btn-popup-max-img');
 const fullScrin = document.querySelector('.popup__max-img');
 const fullScrinTitle =document.querySelector('.popup__max-img-title');
 const templateCard = document.querySelector('#template-card').content;
 const cardList = document.querySelector('#card-list');
+//ошибки
+function isValid (formElement, inputElement) {
+    if (!inputElement.validity.valid) {
+      showInputError(formElement, inputElement, inputElement.validationMessage);
+    } else {
+      hideInputError(formElement, inputElement);
+    }
+};
 
+function showInputError (formElement, inputElement, errorMasage) {
+    const inputError = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.add('form__input_type_error');
+    inputError.textContent = errorMasage;
+};
+function hideInputError (formElement, inputElement){
+    const inputError = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove('form__input_type_error');
+    inputError.textContent = '';
+};
+
+function setEventListeners (formElement){
+    const inputList = Array.from(formElement.querySelectorAll('.form__input'));
+    inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', () => {
+        isValid(formElement, inputElement)
+      });
+    });
+};
+
+function enableValidation () {
+    const formList = Array.from(document.querySelectorAll('.form'));
+    formList.forEach((formElement) => {
+      formElement.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+      });
+      setEventListeners(formElement);
+    });
+};
+
+enableValidation();
+
+//---
 
 function closePopup (popup) {
     popup.classList.remove('popup_opened');
@@ -101,7 +142,7 @@ buttonClosePopupProfile.addEventListener('click', closeProfile);
 buttonAddCard.addEventListener('click',openCreateCard);
 buttonClosePopupCreateCard.addEventListener('click', closeCreateCard);
 buttonClosePopupFullScreen.addEventListener('click', closePopupFullScreen);
-formProfile.addEventListener('submit', submitProfile);
+formProfileEdit.addEventListener('submit', submitProfile);
 formCreateCard.addEventListener('submit',submitCreateCard);
 
 initialCards.forEach(renderCard);

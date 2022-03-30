@@ -45,21 +45,23 @@
             <input
               type="text"
               name="nickname"
-              id="name"
+              id="name-input"
               class="form__input form__input_name_position"
               minlength="2"
               maxlength="40"
               required
             />
+            <span class="name-input-error form__input-error form__input-error_name_position"></span>
             <input
               type="text"
               name="profession"
-              id="prof"
+              id="profession-input"
               class="form__input form__input_prof_position"
               minlength="2"
               maxlength="200"
               required
             />
+            <span class="profession-input-error form__input-error form__input-error_profession_position"></span>
             <button type="submit" class="form__save-button" id="save-btn">
               Сохранить
             </button>
@@ -86,21 +88,23 @@
             <input
               type="text"
               name="place"
-              id="place"
+              id="place-input"
               class="form__input form__input_place_position"
               placeholder="Название"
               minlength="2"
               maxlength="30"
               required
             />
+            <span class="place-input-error form__input-error form__input-error_position"></span>
             <input
               type="url"
               name="place-link"
-              id="place-link"
+              id="place-link-input"
               class="form__input form__input_place-link_position"
               placeholder="Ссылка на картинку"
               required
             />
+            <span class="place-link-input-error form__input-error form__input-error_position"></span>
             <button type="submit" class="form__save-button" id="create-btn">
               Создать
             </button>
