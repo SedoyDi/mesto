@@ -18,91 +18,58 @@ const fullScrin = document.querySelector('.popup__max-img');
 const fullScrinTitle =document.querySelector('.popup__max-img-title');
 const templateCard = document.querySelector('#template-card').content;
 const cardList = document.querySelector('#card-list');
-//ошибки
-function isValid (formElement, inputElement) {
-    if (!inputElement.validity.valid) {
-      showInputError(formElement, inputElement, inputElement.validationMessage);
-    } else {
-      hideInputError(formElement, inputElement);
-    }
-};
-
-function showInputError (formElement, inputElement, errorMasage) {
-    const inputError = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('form__input_type_error');
-    inputError.textContent = errorMasage;
-};
-function hideInputError (formElement, inputElement){
-    const inputError = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('form__input_type_error');
-    inputError.textContent = '';
-};
-
-function setEventListeners (formElement){
-    const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-    inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', () => {
-        isValid(formElement, inputElement)
-      });
-    });
-};
-
-function enableValidation () {
-    const formList = Array.from(document.querySelectorAll('.form'));
-    formList.forEach((formElement) => {
-      formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-      setEventListeners(formElement);
-    });
-};
-
-enableValidation();
-
-//---
 
 function closePopup (popup) {
     popup.classList.remove('popup_opened');
 };
+
 function openPopup (popup) {
     popup.classList.add('popup_opened');
 }
 
+function closeClickOverlay (e){
+  if (!e.target.closest('.popup-content')){
+    closePopup(e.target.closest('.popup'));
+  }
+};
 
 function openProfile () {
     nickNameInput.value = nickName.textContent;
     professionInput.value = profession.textContent;
     openPopup(popupProfile);
+    popupProfile.addEventListener('click', closeClickOverlay)
 };
+
 function submitProfile (evt){
     evt.preventDefault(); 
     nickName.textContent = nickNameInput.value
     profession.textContent = professionInput.value
     closePopup(popupProfile);
 };
-//иначе функция закрытия отказываеться работать при нажатии на крестик
+
 function closeProfile (){
     closePopup (popupProfile)
 };
 
-
 function openCreateCard () {
     formCreateCard.reset()
     openPopup(popupCreateCard);
+    popupCreateCard.addEventListener('click', closeClickOverlay)
 };
+
 function submitCreateCard (evt) {
     evt.preventDefault();
     renderCard({name: placeInput.value, link: placeLinkInput.value});
     closePopup(popupCreateCard);
 };
-//иначе функция закрытия отказываеться работать при нажатии на крестик
+
 function closeCreateCard () {
     closePopup(popupCreateCard)
 };
 
 function renderCard(element) {
     const newCard = createCard (element);
-    cardList.prepend(newCard) //метод append для обработки данных из массива счетаю предпочтительней т.к. он работает быстрее. ;)
+    cardList.prepend(newCard)
 };
 
 function createCard (element) {
@@ -125,8 +92,9 @@ function openPopupFullScreen (evt) {
     fullScrin.alt = evt.target.alt;
     fullScrinTitle.textContent = evt.target.alt;
     openPopup(popupFullScreen);
+    popupFullScreen.addEventListener('click', closeClickOverlay)
 };
-//иначе функция закрытия отказываеться работать при нажатии на крестик
+
 function closePopupFullScreen (){
     closePopup(popupFullScreen);
 };
@@ -145,4 +113,12 @@ buttonClosePopupFullScreen.addEventListener('click', closePopupFullScreen);
 formProfileEdit.addEventListener('submit', submitProfile);
 formCreateCard.addEventListener('submit',submitCreateCard);
 
+document.addEventListener('keydown', function (evt){
+  if(evt.key === 'Escape'){
+    const popupActiv = document.querySelector('.popup_opened');
+    closePopup(popupActiv);
+  };
+});
+
 initialCards.forEach(renderCard);
+

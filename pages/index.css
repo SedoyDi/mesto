@@ -50,3 +50,4 @@
 @import url(../blocks/form/__input-error/form__input-error.css);
 @import url(../blocks/form/__input-error/_name_position/form__input-error_name_position.css);
 @import url(../blocks/form/__input-error/_profession_position/form__input-error_profession_position.css);
+@import url(../blocks/form/__submit_inactive/form__submit_inactive.css);
