@@ -19,25 +19,35 @@ const fullScrinTitle =document.querySelector('.popup__max-img-title');
 const templateCard = document.querySelector('#template-card').content;
 const cardList = document.querySelector('#card-list');
 
+function closeByClick (e) {
+    if (!e.target.closest('.popup-content')){
+      closePopup(e.target.closest('.popup'));
+    }
+};
+
+function closeByEscape (evt) {
+    if(evt.key === 'Escape'){
+      const popupActiv = document.querySelector('.popup_opened');
+      closePopup(popupActiv);
+    };
+};
+
 function closePopup (popup) {
     popup.classList.remove('popup_opened');
+    popup.removeEventListener('click', closeByClick);
+    document.removeEventListener('keydown', closeByEscape);
 };
 
 function openPopup (popup) {
     popup.classList.add('popup_opened');
+    popup.addEventListener('click', closeByClick);
+    document.addEventListener('keydown', closeByEscape);
 }
-
-function closeClickOverlay (e){
-  if (!e.target.closest('.popup-content')){
-    closePopup(e.target.closest('.popup'));
-  }
-};
 
 function openProfile () {
     nickNameInput.value = nickName.textContent;
     professionInput.value = profession.textContent;
     openPopup(popupProfile);
-    popupProfile.addEventListener('click', closeClickOverlay)
 };
 
 function submitProfile (evt){
@@ -52,14 +62,14 @@ function closeProfile (){
 };
 
 function openCreateCard () {
-    formCreateCard.reset()
     openPopup(popupCreateCard);
-    popupCreateCard.addEventListener('click', closeClickOverlay)
 };
 
 function submitCreateCard (evt) {
     evt.preventDefault();
     renderCard({name: placeInput.value, link: placeLinkInput.value});
+    formCreateCard.reset()
+    enableValidation(selectorList);
     closePopup(popupCreateCard);
 };
 
@@ -92,7 +102,6 @@ function openPopupFullScreen (evt) {
     fullScrin.alt = evt.target.alt;
     fullScrinTitle.textContent = evt.target.alt;
     openPopup(popupFullScreen);
-    popupFullScreen.addEventListener('click', closeClickOverlay)
 };
 
 function closePopupFullScreen (){
@@ -113,12 +122,4 @@ buttonClosePopupFullScreen.addEventListener('click', closePopupFullScreen);
 formProfileEdit.addEventListener('submit', submitProfile);
 formCreateCard.addEventListener('submit',submitCreateCard);
 
-document.addEventListener('keydown', function (evt){
-  if(evt.key === 'Escape'){
-    const popupActiv = document.querySelector('.popup_opened');
-    closePopup(popupActiv);
-  };
-});
-
 initialCards.forEach(renderCard);
-
