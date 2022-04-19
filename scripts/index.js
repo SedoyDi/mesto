@@ -1,3 +1,32 @@
+import { Card } from "./Card.js";
+
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
+
 const popupProfile = document.querySelector('#profile');
 const buttonProfileEdit = document.querySelector('.profile__edit');
 const buttonClosePopupProfile = document.querySelector('#close-btn-pup-profile');
@@ -12,11 +41,10 @@ const buttonClosePopupCreateCard = document.querySelector('#close-btn-pup-card')
 const formCreateCard = document.querySelector('#form-create');
 const placeInput = document.querySelector('#place-input');
 const placeLinkInput = document.querySelector('#place-link-input')
-const popupFullScreen = document.querySelector('#max-img');
+export const popupFullScreen = document.querySelector('#max-img');
 const buttonClosePopupFullScreen = document.querySelector('#close-btn-popup-max-img');
-const fullScrin = document.querySelector('.popup__max-img');
-const fullScrinTitle =document.querySelector('.popup__max-img-title');
-const templateCard = document.querySelector('#template-card').content;
+export const fullScrin = document.querySelector('.popup__max-img');
+export const fullScrinTitle =document.querySelector('.popup__max-img-title');
 const cardList = document.querySelector('#card-list');
 
 function closeByClick (e) {
@@ -38,7 +66,7 @@ function closePopup (popup) {
     document.removeEventListener('keydown', closeByEscape);
 };
 
-function openPopup (popup) {
+export function openPopup (popup) {
     popup.classList.add('popup_opened');
     popup.addEventListener('click', closeByClick);
     document.addEventListener('keydown', closeByEscape);
@@ -65,11 +93,10 @@ function openCreateCard () {
     openPopup(popupCreateCard);
 };
 
-function submitCreateCard (evt) {
+const submitCreateCard = (evt) => {
     evt.preventDefault();
     renderCard({name: placeInput.value, link: placeLinkInput.value});
     formCreateCard.reset()
-    enableValidation(selectorList);
     closePopup(popupCreateCard);
 };
 
@@ -77,41 +104,14 @@ function closeCreateCard () {
     closePopup(popupCreateCard)
 };
 
-function renderCard(element) {
-    const newCard = createCard (element);
-    cardList.prepend(newCard)
-};
-
-function createCard (element) {
-    const cloneCard = templateCard.querySelector('.card').cloneNode(true);
-    const placeImg = cloneCard.querySelector('.card__image');
-    const placeTitle = cloneCard.querySelector('.card__title');
-    const likeBtn = cloneCard.querySelector('.card__like-button');
-    const deleteBtn = cloneCard.querySelector('.card__delete-button');
-    placeImg.src = element.link;
-    placeImg.alt = element.name;
-    placeTitle.textContent = element.name;
-    placeImg.addEventListener('click', openPopupFullScreen);
-    likeBtn.addEventListener('click', activitylike);
-    deleteBtn.addEventListener('click', deleteCard);
-    return cloneCard; 
-};
-
-function openPopupFullScreen (evt) {
-    fullScrin.src = evt.target.src;
-    fullScrin.alt = evt.target.alt;
-    fullScrinTitle.textContent = evt.target.alt;
-    openPopup(popupFullScreen);
+const renderCard = (element) => {
+    const newCard = new Card (element);
+    const newElement = newCard.createCard();
+    cardList.prepend(newElement)
 };
 
 function closePopupFullScreen (){
     closePopup(popupFullScreen);
-};
-function activitylike (evt) {
-    evt.target.classList.toggle('card__like-button_active');
-};
-function deleteCard (evt) {
-    evt.target.closest('.card').remove();
 };
 
 buttonProfileEdit.addEventListener('click', openProfile);
@@ -123,3 +123,5 @@ formProfileEdit.addEventListener('submit', submitProfile);
 formCreateCard.addEventListener('submit',submitCreateCard);
 
 initialCards.forEach(renderCard);
+
+
