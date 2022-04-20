@@ -2,7 +2,6 @@ import {openPopup, fullScrin, fullScrinTitle, popupFullScreen} from './index.js'
 
 export class Card {
     static _templateCard = document.querySelector('#template-card').content;
-
     constructor(element) {
         this._element = element;
     };
