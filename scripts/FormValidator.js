@@ -1,11 +1,3 @@
-export const listSelector = {
-  inputSelector: '.form__input',
-  submitButtonSelector: '.submit-button',
-  inactiveButtonClass: 'form__submit_inactive',
-  inputErrorClass: 'form__input_type_error',
-};
-
-
 export class FormValidator {
   constructor(listSelector, formElement) {
     this._listSelector = listSelector
@@ -43,7 +35,7 @@ export class FormValidator {
     this._submitButton.classList.remove(this._listSelector.inactiveButtonClass);
     this._submitButton.removeAttribute('disabled');
   };
-  _toggleButtonState () {
+  toggleButtonState () {
     if (this._hasInvalidInput()) {
       this._inactiveSubmitButton ()
     } else {
@@ -51,11 +43,11 @@ export class FormValidator {
     }
   };
   _setEventListeners () {
-    this._toggleButtonState();
+    this.toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
       this._isValid(inputElement)
-      this._toggleButtonState(inputElement);
+      this.toggleButtonState(inputElement);
     });
   });
   };

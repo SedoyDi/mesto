@@ -19,16 +19,17 @@ export class Card {
         this._deleteButton.addEventListener('click', this._deleteCard);
         return this._cloneCard;
     };
-    _activitylike (evt) {
-        evt.target.classList.toggle('card__like-button_active');
+    _activitylike = () => {
+        this._likeButton.classList.toggle('card__like-button_active');
     };
-    _deleteCard (evt) {
-        evt.target.closest('.card').remove();
+    _deleteCard = () => {
+        this._cloneCard.remove();
+        this._cloneCard = null;
     };
     _openPopupFullScreen = (evt) => {
-        fullScrin.src = evt.target.src;
-        fullScrin.alt = evt.target.alt;
-        fullScrinTitle.textContent = evt.target.alt;
+        fullScrin.src = this._plaseImg.src;
+        fullScrin.alt = this._plaseImg.alt;
+        fullScrinTitle.textContent = this._placeTitle.textContent;
         openPopup(popupFullScreen);
     };
 };

@@ -1,5 +1,12 @@
 import { Card } from "./Card.js";
-import { FormValidator, listSelector } from "./FormValidator.js";
+import { FormValidator} from "./FormValidator.js";
+
+const listSelector = {
+  inputSelector: '.form__input',
+  submitButtonSelector: '.submit-button',
+  inactiveButtonClass: 'form__submit_inactive',
+  inputErrorClass: 'form__input_type_error',
+};
 
 const initialCards = [
     {
@@ -76,7 +83,7 @@ export function openPopup (popup) {
 function openProfile () {
     nickNameInput.value = nickName.textContent;
     professionInput.value = profession.textContent;
-    profileValidator.enableValidation();
+    profileValidator.toggleButtonState();
     openPopup(popupProfile);
 };
 
@@ -92,7 +99,7 @@ function closeProfile (){
 };
 
 function openCreateCard () {
-    createCardValidator.enableValidation();
+    createCardValidator.toggleButtonState();
     openPopup(popupCreateCard);
 };
 
@@ -132,7 +139,3 @@ profileValidator.enableValidation();
 
 const createCardValidator = new FormValidator(listSelector,formCreateCard);
 createCardValidator.enableValidation();
-
-
-
-
