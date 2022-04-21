@@ -6,6 +6,6 @@
 
 @media screen and (min-width: 880px) {
     .form__input-error_place-input_position {
-        top: 111px
+        top: 111px;
     }
-    }
+}
