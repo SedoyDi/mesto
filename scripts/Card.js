@@ -27,9 +27,9 @@ export class Card {
         this._cloneCard = null;
     };
     _openPopupFullScreen = (evt) => {
-        fullScrin.src = this._plaseImg.src;
-        fullScrin.alt = this._plaseImg.alt;
-        fullScrinTitle.textContent = this._placeTitle.textContent;
+        fullScrin.src = this._element.link;
+        fullScrin.alt = this._element.name;
+        fullScrinTitle.textContent = this._element.name;
         openPopup(popupFullScreen);
     };
 };
