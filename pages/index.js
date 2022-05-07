@@ -1,4 +1,5 @@
 import Card from "../components/Card.js";
+import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
 import {
   listSelector,
@@ -23,72 +24,71 @@ import {
 } from "../utils/utils.js";
 
 function closeByClick (e) {
-    if (!e.target.closest('.popup-content')){
-      closePopup(e.target.closest('.popup'));
-    }
+  if (!e.target.closest('.popup-content')){
+    closePopup(e.target.closest('.popup'));
+  }
 };
 
 function closeByEscape (evt) {
-    if(evt.key === 'Escape'){
-      const popupActiv = document.querySelector('.popup_opened');
-      closePopup(popupActiv);
-    };
+  if(evt.key === 'Escape'){
+    const popupActiv = document.querySelector('.popup_opened');
+    closePopup(popupActiv);
+  };
 };
 
 function closePopup (popup) {
-    popup.classList.remove('popup_opened');
-    popup.removeEventListener('click', closeByClick);
-    document.removeEventListener('keydown', closeByEscape);
+  popup.classList.remove('popup_opened');
+  popup.removeEventListener('click', closeByClick);
+  document.removeEventListener('keydown', closeByEscape);
 };
 
 export function openPopup (popup) {
-    popup.classList.add('popup_opened');
-    popup.addEventListener('click', closeByClick);
-    document.addEventListener('keydown', closeByEscape);
+  popup.classList.add('popup_opened');
+  popup.addEventListener('click', closeByClick);
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function openProfile () {
-    nickNameInput.value = nickName.textContent;
-    professionInput.value = profession.textContent;
-    profileValidator.toggleButtonState();
-    openPopup(popupProfile);
+  nickNameInput.value = nickName.textContent;
+  professionInput.value = profession.textContent;
+  profileValidator.toggleButtonState();
+  openPopup(popupProfile);
 };
 
 function submitProfile (evt){
-    evt.preventDefault(); 
-    nickName.textContent = nickNameInput.value
-    profession.textContent = professionInput.value
-    closePopup(popupProfile);
+  evt.preventDefault(); 
+  nickName.textContent = nickNameInput.value
+  profession.textContent = professionInput.value
+  closePopup(popupProfile);
 };
 
 function closeProfile (){
-    closePopup (popupProfile)
+  closePopup (popupProfile)
 };
 
 function openCreateCard () {
-    createCardValidator.toggleButtonState();
-    openPopup(popupCreateCard);
+  createCardValidator.toggleButtonState();
+  openPopup(popupCreateCard);
 };
 
 const submitCreateCard = (evt) => {
-    evt.preventDefault();
-    renderCard({name: placeInput.value, link: placeLinkInput.value});
-    formCreateCard.reset()
-    closePopup(popupCreateCard);
+  evt.preventDefault();
+  renderCard({name: placeInput.value, link: placeLinkInput.value});
+  formCreateCard.reset()
+  closePopup(popupCreateCard);
 };
 
 function closeCreateCard () {
-    closePopup(popupCreateCard)
+  closePopup(popupCreateCard)
 };
 
 const renderCard = (element) => {
-    const newCard = new Card (element);
-    const newElement = newCard.createCard();
-    cardList.prepend(newElement)
+  const newCard = new Card (element);
+  section.addItems(newCard.createCard())
 };
 
 function closePopupFullScreen (){
-    closePopup(popupFullScreen);
+  closePopup(popupFullScreen);
 };
 
 buttonProfileEdit.addEventListener('click', openProfile);
@@ -99,7 +99,8 @@ buttonClosePopupFullScreen.addEventListener('click', closePopupFullScreen);
 formProfileEdit.addEventListener('submit', submitProfile);
 formCreateCard.addEventListener('submit',submitCreateCard);
 
-initialCards.forEach(renderCard);
+const section = new Section ({items: initialCards, renderer: renderCard}, cardList);
+section.renderItems();
 
 const profileValidator = new FormValidator(listSelector,formProfileEdit);
 profileValidator.enableValidation();

@@ -24,6 +24,7 @@ export default class Card {
         this._deleteButton.addEventListener('click', this._deleteCard);
         return this._cloneCard;
     };
+    
     _activitylike = () => {
         this._likeButton.classList.toggle('card__like-button_active');
     };
