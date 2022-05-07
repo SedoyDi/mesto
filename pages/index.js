@@ -6,7 +6,6 @@ import {
   initialCards,
   popupProfile,
   buttonProfileEdit,
-  buttonClosePopupProfile,
   formProfileEdit,
   nickNameInput,
   nickName,
@@ -14,39 +13,11 @@ import {
   professionInput,
   popupCreateCard,
   buttonAddCard,
-  buttonClosePopupCreateCard,
   formCreateCard,
   placeInput,
   placeLinkInput,
-  popupFullScreen,
-  buttonClosePopupFullScreen,
   cardList,
 } from "../utils/utils.js";
-
-function closeByClick (e) {
-  if (!e.target.closest('.popup-content')){
-    closePopup(e.target.closest('.popup'));
-  }
-};
-
-function closeByEscape (evt) {
-  if(evt.key === 'Escape'){
-    const popupActiv = document.querySelector('.popup_opened');
-    closePopup(popupActiv);
-  };
-};
-
-function closePopup (popup) {
-  popup.classList.remove('popup_opened');
-  popup.removeEventListener('click', closeByClick);
-  document.removeEventListener('keydown', closeByEscape);
-};
-
-export function openPopup (popup) {
-  popup.classList.add('popup_opened');
-  popup.addEventListener('click', closeByClick);
-  document.addEventListener('keydown', closeByEscape);
-}
 
 function openProfile () {
   nickNameInput.value = nickName.textContent;
@@ -62,10 +33,6 @@ function submitProfile (evt){
   closePopup(popupProfile);
 };
 
-function closeProfile (){
-  closePopup (popupProfile)
-};
-
 function openCreateCard () {
   createCardValidator.toggleButtonState();
   openPopup(popupCreateCard);
@@ -78,24 +45,13 @@ const submitCreateCard = (evt) => {
   closePopup(popupCreateCard);
 };
 
-function closeCreateCard () {
-  closePopup(popupCreateCard)
-};
-
 const renderCard = (element) => {
   const newCard = new Card (element);
   section.addItems(newCard.createCard())
 };
 
-function closePopupFullScreen (){
-  closePopup(popupFullScreen);
-};
-
 buttonProfileEdit.addEventListener('click', openProfile);
-buttonClosePopupProfile.addEventListener('click', closeProfile);
 buttonAddCard.addEventListener('click',openCreateCard);
-buttonClosePopupCreateCard.addEventListener('click', closeCreateCard);
-buttonClosePopupFullScreen.addEventListener('click', closePopupFullScreen);
 formProfileEdit.addEventListener('submit', submitProfile);
 formCreateCard.addEventListener('submit',submitCreateCard);
 
