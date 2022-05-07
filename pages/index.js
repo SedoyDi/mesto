@@ -1,59 +1,26 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-
-const listSelector = {
-  inputSelector: '.form__input',
-  submitButtonSelector: '.submit-button',
-  inactiveButtonClass: 'form__submit_inactive',
-  inputErrorClass: 'form__input_type_error',
-};
-
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
-
-const popupProfile = document.querySelector('#profile');
-const buttonProfileEdit = document.querySelector('.profile__edit');
-const buttonClosePopupProfile = document.querySelector('#close-btn-pup-profile');
-const formProfileEdit = document.querySelector('#profile-edit');
-const nickNameInput = document.querySelector('#name-input');
-const nickName = document.querySelector('.profile__nick-name');
-const profession = document.querySelector('.profile__profession');
-const professionInput = document.querySelector('#profession-input');
-const popupCreateCard = document.querySelector('#create-card');
-const buttonAddCard = document.querySelector('.profile__add-photo');
-const buttonClosePopupCreateCard = document.querySelector('#close-btn-pup-card');
-const formCreateCard = document.querySelector('#form-create');
-const placeInput = document.querySelector('#place-input');
-const placeLinkInput = document.querySelector('#place-link-input')
-export const popupFullScreen = document.querySelector('#max-img');
-const buttonClosePopupFullScreen = document.querySelector('#close-btn-popup-max-img');
-export const fullScrin = document.querySelector('.popup__max-img');
-export const fullScrinTitle =document.querySelector('.popup__max-img-title');
-const cardList = document.querySelector('#card-list');
+import {
+  listSelector,
+  initialCards,
+  popupProfile,
+  buttonProfileEdit,
+  buttonClosePopupProfile,
+  formProfileEdit,
+  nickNameInput,
+  nickName,
+  profession,
+  professionInput,
+  popupCreateCard,
+  buttonAddCard,
+  buttonClosePopupCreateCard,
+  formCreateCard,
+  placeInput,
+  placeLinkInput,
+  popupFullScreen,
+  buttonClosePopupFullScreen,
+  cardList,
+} from "../utils/utils.js";
 
 function closeByClick (e) {
     if (!e.target.closest('.popup-content')){

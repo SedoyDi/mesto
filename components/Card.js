@@ -1,4 +1,9 @@
-import {openPopup, fullScrin, fullScrinTitle, popupFullScreen} from "../pages/index.js"
+import {openPopup} from "../pages/index.js"
+import {
+    fullScrin,
+    fullScrinTitle,
+    popupFullScreen,
+} from "../utils/utils.js"
 
 export default class Card {
     static _templateCard = document.querySelector('#template-card').content;
