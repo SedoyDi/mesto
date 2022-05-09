@@ -11,6 +11,7 @@ export default class PopupWithImage extends Popup {
   }
   open = () => {
     this._popupSelector.classList.add('popup_opened');
+    document.addEventListener('keydown', this._handleEscClose);
     fullScrin.src = this._element.link;
     fullScrin.alt = this._element.name;
     fullScrinTitle.textContent = this._element.name;
