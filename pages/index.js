@@ -23,34 +23,26 @@ const openCreateCard = () => {
   popupWithCreateCard.open();
   createCardValidator.toggleButtonState();
 }
-
 const renderCard = (element) => {
   const popupWithImage = new PopupWithImage(popupFullScreen,element)
   popupWithImage.setEventListeners();
   const newCard = new Card (element, popupWithImage.open);
   section.addItems(newCard.createCard())
 };
-
 const submitCreateCard = (element) => { 
   renderCard(element);
 };
-
 const submitProfile = (element) => {
  
 };
-
 const section = new Section ({items: initialCards, renderer: renderCard}, cardList);
 section.renderItems();
-
 const profileValidator = new FormValidator(listSelector,formProfileEdit);
 profileValidator.enableValidation();
-
 const createCardValidator = new FormValidator(listSelector,formCreateCard);
 createCardValidator.enableValidation();
-
 const popupWithProfile = new PopupWithForm (popupProfile, submitProfile)
 const popupWithCreateCard = new PopupWithForm (popupCreateCard, submitCreateCard)
-
 buttonProfileEdit.addEventListener('click', openProfile);
 buttonAddCard.addEventListener('click',openCreateCard);
 popupWithProfile.setEventListeners();
