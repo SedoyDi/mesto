@@ -1,6 +1,8 @@
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
+import Popup from "../components/Popup.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import {
   listSelector,
   initialCards,
@@ -17,6 +19,7 @@ import {
   placeInput,
   placeLinkInput,
   cardList,
+  popupFullScreen,
 } from "../utils/utils.js";
 
 function openProfile () {
@@ -46,7 +49,9 @@ const submitCreateCard = (evt) => {
 };
 
 const renderCard = (element) => {
-  const newCard = new Card (element);
+  const popupWithImage = new PopupWithImage(popupFullScreen,element)
+  popupWithImage.setEventListeners();
+  const newCard = new Card (element, popupWithImage.open);
   section.addItems(newCard.createCard())
 };
 
