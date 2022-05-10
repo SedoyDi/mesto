@@ -31,7 +31,10 @@ export const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
       }
     ];
-  
+export const nickNameInput = document.querySelector('#name-input');
+export const aboutMeInput = document.querySelector('#about-me-input')
+export const nickNameSelector = '.profile__nick-name';
+export const aboutMeSelector = '.profile__profession';
 export const popupProfile = document.querySelector('#profile');
 export const buttonProfileEdit = document.querySelector('.profile__edit');
 export const formProfileEdit = document.querySelector('#profile-edit');
