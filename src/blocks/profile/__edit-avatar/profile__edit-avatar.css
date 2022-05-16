@@ -6,7 +6,6 @@
     width: 120px;
     height: 120px;
     cursor: pointer;
-    background-image: url(../../../image/profile/avatar.svg);
     position: relative;
 }
 .profile__edit-avatar::before {

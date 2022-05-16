@@ -8,6 +8,7 @@
 /*---profile---*/
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__edit-avatar/profile__edit-avatar.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__nick-name/profile__nick-name.css);
 @import url(../blocks/profile/__edit/profile__edit.css);
@@ -20,7 +21,9 @@
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__title-wrap/card__title-wrap.css);
 @import url(../blocks/card/__title/card__title.css);
+@import url(../blocks/card/__like-box/card__like-box.css);
 @import url(../blocks/card/__like-button/card__like-button.css);
+@import url(../blocks/card/__like-counter/card__like-counter.css);
 @import url(../blocks/card/__like-button/_active/card__like-button_active.css);
 @import url(../blocks/card/__delete-button/card__delete-button.css);
 /*---footer---*/
@@ -41,13 +44,16 @@
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__input/_type_error/form__input_type_error.css);
+@import url(../blocks/form/__input/_avatar-link_position/form__input_avatar-link_position.css);
 @import url(../blocks/form/__input/_name_position/form__input_name_position.css);
 @import url(../blocks/form/__input/_prof_position/form__input_prof_position.css);
 @import url(../blocks/form/__input/_place_position/form__input_place_position.css);
 @import url(../blocks/form/__input/_place-link_position/form__input_place-link_position.css);
+@import url(../blocks/form/__you-sure-button/form__you-sure-button.css);
 @import url(../blocks/form/__save-button/form__save-button.css);
 /*---error---*/
 @import url(../blocks/form/__input-error/form__input-error.css);
+@import url(../blocks/form/__input-error/_avatar-link_position/form__input-error_avatar-link_position.css);
 @import url(../blocks/form/__input-error/_name_position/form__input-error_name_position.css);
 @import url(../blocks/form/__input-error/_profession_position/form__input-error_profession_position.css);
 @import url(../blocks/form/__submit_inactive/form__submit_inactive.css);

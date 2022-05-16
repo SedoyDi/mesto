@@ -8,15 +8,17 @@
   <body class="page">
     <div class="page__content">
       <header class="header">
-        <img class="header__logo" src="<%=require('./image/header/logo.svg')%>" alt="Логотип" />
+        <img class="header__logo" src="<%=require('./image/header/logo.svg')%>" alt="логотип" />
       </header>
       <main>
         <section class="profile">
           <button type="button" class="profile__edit-avatar">
+            <img class="profile__avatar" src="<%=require('./image/profile/avatar.svg')%>" alt="аватар">
           </button>
           <div class="profile__info">
             <h1 class="profile__nick-name">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__edit"></button>
+            <button type="button" class="profile__edit">
+            </button>
             <p class="profile__profession">Исследователь океана</p>
           </div>
           <button type="button" class="profile__add-photo"></button>
@@ -26,6 +28,39 @@
       <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
       </footer>
+    </div>
+
+    <div class="popup" id="avatar">
+      <div class="popup__body">
+        <form
+          action="#"
+          name="cheng-avatar"
+          id="cheng-avatar"
+          class="form popup-content"
+          novalidate
+        >
+          <div class="form__content">
+            <h2 class="form__title">Обновить аватар</h2>
+            <input
+              type="url"
+              name="avatar-link-input"
+              id="avatar-link-input"
+              class="form__input form__input_avatar-link_position"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="avatar-link-input-error form__input-error form__input-error_avatar-link_position"></span>
+            <button type="submit" class="form__save-button submit-button">
+              Сохранить
+            </button>
+            <button
+              type="button"
+              class="popup__close-button"
+            ></button>
+          </div>
+        </form>
+      </div>
     </div>
     <div class="popup" id="profile">
       <div class="popup__body">
@@ -111,6 +146,28 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_opened" id="delete-card">
+      <div class="popup__body">
+        <form
+          action="#"
+          name="you-sure"
+          id="you-sure"
+          class="form popup-content"
+          novalidate
+        >
+          <div class="form__content">
+            <h2 class="form__title">Вы уверены?</h2>
+            <button type="submit" class="form__you-sure-button submit-button">
+              Да
+            </button>
+            <button
+              type="button"
+              class="popup__close-button"
+            ></button>
+          </div>
+        </form>
+      </div>
+    </div>
     <div class="popup popup_type_max-img" id="max-img">
       <div class="popup__body">
         <div class="popup__content-max-img popup-content">
@@ -128,7 +185,10 @@
         <img class="card__image" src="#" alt="#" />
         <div class="card__title-wrap">
           <h2 class="card__title">#</h2>
+          <div class="card__like-box">
           <button type="button" class="card__like-button"></button>
+          <span class="card__like-counter"></span>
+          </div>
         </div>
         <button type="button" class="card__delete-button"></button>
       </div>
