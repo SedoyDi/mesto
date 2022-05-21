@@ -3,15 +3,15 @@ export default class Api {
         this._url = config.url;
         this._headers = config.headers;
     }
-    _check(){
-
+    _check(res){
+        if(res.ok){
+            return res.json();
+        }
     }
     getAllCard() {
-        return fetch(this._url, {
+        return fetch(`${this._url}/cards`, {
             method: 'GET',
             headers: this._headers,
-        }).then((res) => {
-            return res.json()
-        });
+        }).then(this._check);
     }
 }

@@ -22,13 +22,13 @@ import {
   aboutMeInput,
 } from "../scripts/utils/utils.js";
 
-const openProfile = (data) =>{
+function openProfile (data) {
   nickNameInput.value = data.nickName;
   aboutMeInput.value = data.aboutMe;
   popupWithProfile.open();
   profileValidator.resetValidation();
 };
-const openCreateCard = () => {
+function openCreateCard () {
   popupWithCreateCard.open();
   createCardValidator.resetValidation();
 }
@@ -40,39 +40,27 @@ function createCard(element) {
   const cardElement = newCard.createCard() ;
   return cardElement
 }
-const addNewCard = (element) => {
+
+function addNewCard (element) {
   cardList.prepend(createCard(element))
 }
 
-const renderCard = (element) => {
-  section.addItems(createCard(element))
-};
-const submitCreateCard = (element) => { 
+function submitCreateCard (element) { 
   addNewCard(element);
 };
-const submitProfile = (element) => {
+function submitProfile (element) {
  userInfo.setUserInfo(element);
 };
 
 const api = new Api ({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-41/cards',
+  url: "https://mesto.nomoreparties.co/v1/cohort-41",
   headers: {
-    authorization: '9f932bbc-acd7-4dae-8249-c98552659f56',
-    'content-type': 'application/json',
+    authorization: "9f932bbc-acd7-4dae-8249-c98552659f56",
+    "content-type": "application/json",
   }
 });
-api.getAllCard()
-  .then((data) => {
-  console.log(data)
-  const section = new Section ({items: data, renderer: renderCard}, cardList);
-  section.renderItems();
-  })
-  .catch((err) => {
-    console.log(err)
-  });
 
 const userInfo = new UserInfo({nickNameSelector, aboutMeSelector});
-
 const popupWithImage = new PopupWithImage(popupFullScreen)
 const profileValidator = new FormValidator(listSelector,formProfileEdit);
 const createCardValidator = new FormValidator(listSelector,formCreateCard);
@@ -88,3 +76,15 @@ buttonAddCard.addEventListener('click',openCreateCard);
 popupWithImage.setEventListeners();
 popupWithProfile.setEventListeners();
 popupWithCreateCard.setEventListeners();
+
+api.getAllCard()
+  .then((data) => {
+  const section = new Section ({
+    items: data,
+    renderer: (el) => {section.addItems(createCard(el))}},
+    cardList);
+  section.renderItems();
+  })
+  .catch((err) => {
+    console.log(err)
+  });
