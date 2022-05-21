@@ -10,6 +10,7 @@
       <header class="header">
         <img class="header__logo" src="<%=require('./image/header/logo.svg')%>" alt="логотип" />
       </header>
+
       <main>
         <section class="profile">
           <button type="button" class="profile__edit-avatar">
@@ -25,6 +26,7 @@
         </section>
         <section class="photo-grid" id="card-list"></section>
       </main>
+
       <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
       </footer>
@@ -146,7 +148,7 @@
         </form>
       </div>
     </div>
-    <div class="popup popup_opened" id="delete-card">
+    <div class="popup" id="delete-card">
       <div class="popup__body">
         <form
           action="#"
@@ -180,6 +182,7 @@
         </div>
       </div>
     </div>
+
     <template id="template-card">
       <div class="card">
         <img class="card__image" src="#" alt="#" />
