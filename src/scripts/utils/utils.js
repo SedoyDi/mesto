@@ -4,11 +4,11 @@ export const listSelector = {
   inactiveButtonClass: 'form__submit_inactive',
   inputErrorClass: 'form__input_type_error',
 };
-
-export const nickNameInput = document.querySelector('#name-input');
-export const aboutMeInput = document.querySelector('#about-me-input')
+export const popupDeleteCard = document.querySelector('#delete-card')
 export const nickNameSelector = '.profile__nick-name';
 export const aboutMeSelector = '.profile__profession';
+export const nickNameInput = document.querySelector('#name-input');
+export const aboutMeInput = document.querySelector('#about-me-input')
 export const popupProfile = document.querySelector('#profile');
 export const buttonProfileEdit = document.querySelector('.profile__edit');
 export const formProfileEdit = document.querySelector('#profile-edit');

@@ -1,8 +1,10 @@
 export default class UserInfo {
-    constructor({nickNameSelector, aboutMeSelector}){
+    static avatar = document.querySelector('.profile__avatar')
+
+    constructor({nickNameSelector, aboutMeSelector}, data){
         this._nickName = document.querySelector(nickNameSelector);
         this._aboutMe = document.querySelector(aboutMeSelector);
-        this._userInfo = {};
+        this._userInfo = data;
     }
     getUserInfo = () => {
         this._userInfo.nickName = this._nickName.textContent;
