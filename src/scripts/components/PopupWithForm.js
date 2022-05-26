@@ -9,7 +9,7 @@ export default class PopupWithForm extends Popup {
     }
 
     _getInputValues = () =>{
-        this.valueList = {likes: []};
+        this.valueList = {};
         this._inputList.forEach((el) =>{
             this.valueList[el.name] = el.value
         });
@@ -18,7 +18,6 @@ export default class PopupWithForm extends Popup {
 
     setEventListeners(){
         super.setEventListeners();
-        
         this._formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
             this._submitFormСolback(this._getInputValues());

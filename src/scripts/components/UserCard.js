@@ -2,8 +2,8 @@ import Card from "./Card.js";
 
 export default class UserCard extends Card{
     static _templateCard = document.querySelector('#template-userCard').content;
-    constructor(data, handleCardClick, colbackDeleteCard) {
-        super (data, handleCardClick);
+    constructor(data, handleCardClick, colbackLikeButton, colbackDeleteCard) {
+        super (data, handleCardClick, colbackLikeButton);
         this._colbackDeleteCard = colbackDeleteCard;
         this._cloneCard = UserCard._templateCard.querySelector('.card').cloneNode(true);
         this._placeTitle = this._cloneCard.querySelector('.card__title');
@@ -16,7 +16,7 @@ export default class UserCard extends Card{
     _setEventListeners() {
         super._setEventListeners();
         this._deleteButton.addEventListener('click', () => {
-            this._colbackDeleteCard({id: this._data._id, cloneCard: this._cloneCard})
+            this._colbackDeleteCard({id: this._idCard, cloneCard: this._cloneCard})
         });
     }
 };

@@ -13,14 +13,17 @@ export default class PopupDelete extends Popup {
         super.open();
         return this._dataCard;
       }
+      _deleteCard  = () => {
+        this._dataCard.cloneCard.remove();
+        this._dataCard.cloneCard = null;
+        this.close();
+      }
+
       setEventListeners(){
         super.setEventListeners();
         this._formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this._colbackDeleteCard(this._dataCard.id)
-            this._dataCard.cloneCard.remove();
-            this._dataCard.cloneCard = null;
-            this.close();
+            this._colbackDeleteCard(this._dataCard.id, this._deleteCard)
         });
       }
 }

@@ -10,72 +10,96 @@ import UserInfo from '../scripts/components/UserInfo.js';
 import PopupDelete from '../scripts/components/PopupDelete.js';
 import {
   listSelector,
-  popupProfile,
-  buttonProfileEdit,
-  formProfileEdit,
-  popupCreateCard,
   buttonAddCard,
-  formCreateCard,
-  cardList,
-  popupFullScreen,
-  nickNameSelector,
-  aboutMeSelector,
-  nickNameInput,
-  aboutMeInput,
+  buttonChengeAvatar,
+  buttonProfileEdit,
+
+  popupAvatar,
+  popupProfile,
   popupDeleteCard,
+  popupCreateCard,
+  popupFullScreen,
+
+  formCreateCard,
+  formProfileEdit,
+  formChangeAvatar,
+
+  cardList,
+
+  aboutMeSelector,
+  nickNameSelector,
+
+  avatarInput,
+  aboutMeInput,
+  nickNameInput,
 } from '../scripts/utils/utils.js';
 
+function checkLike (data, method) {
+  function check (el) {
+    const id = el._id;
+    const idUser = "fce53b24c8688f9bda5eb610";
+    id === idUser;
+  }
+  if(data.likes.some(check)){
+    method
+  }else{
+  }
+};
 
-function openDeleteCard (data) {
+function testPUT (data, id) {
+  api.likeCard(data, id)
+
+};
+
+function openPopupDeleteCard (data) {
   popupDelete.open(data)
 };
 
-function submitDeleteCard (id) {
-  api.deleteCard(id)
-  .then()
-  .catch((err) => {
-    console.log(err)
-  })
-}
-
-function openProfile (data) {
-  nickNameInput.value = data.nickName;
-  aboutMeInput.value = data.aboutMe;
+function openPopupProfile (data) {
+  nickNameInput.value = data.name;
+  aboutMeInput.value = data.about;
   popupWithProfile.open();
   profileValidator.resetValidation();
 };
-function openCreateCard () {
+
+function openPopupCreateCard () {
   popupWithCreateCard.open();
   createCardValidator.resetValidation();
+};
+
+function openPopupChangeAvatar (data) {
+  avatarInput.value = data.avatar
+  popupChangeAvatar.open();
 }
 
 function createElCard(data) {
   if (data.owner._id === 'fce53b24c8688f9bda5eb610'){
     const newCard = new UserCard (
       data,
-      () => {
-      popupWithImage.open(data)
-      },
-      openDeleteCard
+      () => {popupWithImage.open(data)},
+      testPUT,
+      openPopupDeleteCard,
     );
-    const cardElement = newCard.createCard() ;
     newCard.checkLikeCounter();
+    checkLike(data, newCard.addlike)
+    const cardElement = newCard.createCard() ;
     return cardElement
   }else{
     const newCard = new Card (
       data,
-      () => {
-      popupWithImage.open(data)
-    });
-    const cardElement = newCard.createCard() ;
+      () => {popupWithImage.open(data)},
+      testPUT,
+    );
     newCard.checkLikeCounter();
+    checkLike(data, newCard.addlike);
+    const cardElement = newCard.createCard();
     return cardElement
   }
-}
+};
 
 function addNewCard (data) {
   cardList.prepend(createElCard(data))
-}
+};
 
 function submitCreateCard (data) {
   api.postNewCard(data)
@@ -87,8 +111,36 @@ function submitCreateCard (data) {
   })
 };
 
+function submitDeleteCard (id, method) {
+  api.deleteCard(id)
+  .then(
+    method
+  )
+  .catch((err) => {
+    console.log(err)
+  })
+};
+
 function submitProfile (data) {
- userInfo.setUserInfo(data);
+  api.patchDataUser(data)
+  .then((res) => {
+    userInfo.getUserInfo();
+    userInfo.setUserInfo(res);
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+};
+
+function submitChengeAvatar (data) {
+  api.patchAvatarUser(data)
+  .then((res) => {
+    userInfo.getUserInfo();
+    userInfo.setUserInfo(res);
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 };
 
 const api = new Api ({
@@ -99,20 +151,28 @@ const api = new Api ({
   }
 });
 
+const userInfo = new UserInfo(nickNameSelector, aboutMeSelector)
+const popupChangeAvatar = new PopupWithForm (popupAvatar,submitChengeAvatar)
 const popupDelete = new PopupDelete (popupDeleteCard, submitDeleteCard)
-const popupWithImage = new PopupWithImage (popupFullScreen)
+const popupWithImage = new PopupWithImage (popupFullScreen);
+const avatarValidator = new FormValidator(listSelector, formChangeAvatar);
 const profileValidator = new FormValidator (listSelector,formProfileEdit);
 const createCardValidator = new FormValidator (listSelector,formCreateCard);
 const popupWithProfile = new PopupWithForm (popupProfile, submitProfile)
 const popupWithCreateCard = new PopupWithForm (popupCreateCard, submitCreateCard)
 
+avatarValidator.enableValidation();
 profileValidator.enableValidation();
 createCardValidator.enableValidation();
 
-buttonAddCard.addEventListener('click',openCreateCard);
+buttonAddCard.addEventListener('click',openPopupCreateCard);
+buttonProfileEdit.addEventListener('click',() => openPopupProfile(userInfo.getUserInfo()));
+buttonChengeAvatar.addEventListener('click',() => openPopupChangeAvatar(userInfo.getUserInfo()));
+
 popupDelete.setEventListeners();
 popupWithImage.setEventListeners();
 popupWithProfile.setEventListeners();
+popupChangeAvatar.setEventListeners();
 popupWithCreateCard.setEventListeners();
 
 api.getAllCard()
@@ -130,13 +190,9 @@ api.getAllCard()
   });
 
 api.getUserData()
-  .then((data) => {
-    const userInfo = new UserInfo({
-      nickNameSelector,
-      aboutMeSelector
-    },
-    data);
-    buttonProfileEdit.addEventListener('click',() => {
-      openProfile(userInfo.getUserInfo())
-    });
+  .then((res) => {
+    userInfo.setUserInfo(res);
   })
+  .catch((err) => {
+    console.log(err)
+  });

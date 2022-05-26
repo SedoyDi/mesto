@@ -29,10 +29,38 @@ export default class Api {
             body: JSON.stringify(data)
         }).then(this._check);
     }
+    patchDataUser(data){
+        return fetch(`${this._url}/users/me`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: data.name,
+                about: data.about
+            })
+        }).then(this._check);
+    }
+
+    patchAvatarUser(data){
+        return fetch(`${this._url}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: data.avatar
+            })
+        }).then(this._check);
+    }
+    
     deleteCard(id){
         return fetch(`${this._url}/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers,
+        }).then(this._check);
+    }
+    likeCard(data, id){
+        return fetch(`${this._url}/cards/${id}/likes`, {
+            method: 'PUT',
+            headers: this._headers,
+            body: JSON.stringify(data)
         }).then(this._check);
     }
 }

@@ -14,13 +14,13 @@
       <main>
         <section class="profile">
           <button type="button" class="profile__edit-avatar">
-            <img class="profile__avatar" src="<%=require('./image/profile/avatar.svg')%>" alt="аватар">
+            <img class="profile__avatar" src="#" alt="Загружаю ...">
           </button>
           <div class="profile__info">
-            <h1 class="profile__nick-name">Жак-Ив Кусто</h1>
+            <h1 class="profile__nick-name">Загружаю ...</h1>
             <button type="button" class="profile__edit">
             </button>
-            <p class="profile__profession">Исследователь океана</p>
+            <p class="profile__profession">Загружаю ...</p>
           </div>
           <button type="button" class="profile__add-photo"></button>
         </section>
@@ -45,14 +45,14 @@
             <h2 class="form__title">Обновить аватар</h2>
             <input
               type="url"
-              name="avatar-link-input"
-              id="avatar-link-input"
+              name="avatar"
+              id="avatar-input"
               class="form__input form__input_avatar-link_position"
               minlength="2"
               maxlength="200"
               required
             />
-            <span class="avatar-link-input-error form__input-error form__input-error_avatar-link_position"></span>
+            <span class="avatar-input-error form__input-error form__input-error_avatar-link_position"></span>
             <button type="submit" class="form__save-button submit-button">
               Сохранить
             </button>
@@ -77,7 +77,7 @@
             <h2 class="form__title">Редактировать профиль</h2>
             <input
               type="text"
-              name="nickName"
+              name="name"
               id="name-input"
               class="form__input form__input_name_position"
               minlength="2"
@@ -87,14 +87,14 @@
             <span class="name-input-error form__input-error form__input-error_name_position"></span>
             <input
               type="text"
-              name="aboutMe"
+              name="about"
               id="about-me-input"
               class="form__input form__input_prof_position"
               minlength="2"
               maxlength="200"
               required
             />
-            <span class="about-me-input-error form__input-error form__input-error_profession_position"></span>
+            <span class="about-input-error form__input-error form__input-error_profession_position"></span>
             <button type="submit" class="form__save-button submit-button">
               Сохранить
             </button>
