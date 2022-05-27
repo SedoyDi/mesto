@@ -1,6 +1,6 @@
-import Popup from "./Popup.js";
+import PopupWithForm from "./PopupWithForm.js";
 
-export default class PopupDelete extends Popup {
+export default class PopupDelete extends PopupWithForm {
     constructor (selector, colbackDeleteCard) {
         super(selector)
         this._dataCard ={}
@@ -16,13 +16,13 @@ export default class PopupDelete extends Popup {
       _deleteCard  = () => {
         this._dataCard.cloneCard.remove();
         this._dataCard.cloneCard = null;
-        this.close();
       }
 
       setEventListeners(){
         super.setEventListeners();
         this._formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
+            this.showDownloadMessage(true);
             this._colbackDeleteCard(this._dataCard.id, this._deleteCard)
         });
       }

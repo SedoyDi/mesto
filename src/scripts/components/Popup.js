@@ -3,6 +3,7 @@ export default class Popup {
     this._popupSelector = selector;
     this._closeButton = this._popupSelector.querySelector('.popup__close-button');
   }
+
   _closeByClick = (el) => {
     if (!el.target.closest('.popup-content')){
         this.close();

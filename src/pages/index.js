@@ -34,23 +34,6 @@ import {
   nickNameInput,
 } from '../scripts/utils/utils.js';
 
-function checkLike (data, method) {
-  function check (el) {
-    const id = el._id;
-    const idUser = "fce53b24c8688f9bda5eb610";
-    id === idUser;
-  }
-  if(data.likes.some(check)){
-    method
-  }else{
-  }
-};
-
-function testPUT (data, id) {
-  api.likeCard(data, id)
-
-};
-
 function openPopupDeleteCard (data) {
   popupDelete.open(data)
 };
@@ -68,30 +51,37 @@ function openPopupCreateCard () {
 };
 
 function openPopupChangeAvatar (data) {
-  avatarInput.value = data.avatar
+  avatarInput.value = data.avatar;
   popupChangeAvatar.open();
 }
 
 function createElCard(data) {
-  if (data.owner._id === 'fce53b24c8688f9bda5eb610'){
+  const idUser = userInfo.getIdUser();
+  if (data.owner._id === idUser){
     const newCard = new UserCard (
       data,
-      () => {popupWithImage.open(data)},
-      testPUT,
+      idUser,
+      () => popupWithImage.open(data),
+      () => chengeLikesActive(data, newCard.checkLikeCounter),
+      () => chengeLikesDelete(data, newCard.checkLikeCounter),
       openPopupDeleteCard,
     );
-    newCard.checkLikeCounter();
-    checkLike(data, newCard.addlike)
+    console.log(newCard.test())
+    newCard.checkLikeStatus();
+    newCard.checkLikeCounter(data);
     const cardElement = newCard.createCard() ;
     return cardElement
   }else{
     const newCard = new Card (
       data,
-      () => {popupWithImage.open(data)},
-      testPUT,
+      idUser,
+      () => popupWithImage.open(data),
+      () => chengeLikesActive(data, newCard.checkLikeCounter),
+      () => chengeLikesDelete(data, newCard.checkLikeCounter),
     );
-    newCard.checkLikeCounter();
-    checkLike(data, newCard.addlike);
+    console.log(newCard.test())
+    newCard.checkLikeStatus();
+    newCard.checkLikeCounter(data);
     const cardElement = newCard.createCard();
     return cardElement
   }
@@ -101,24 +91,41 @@ function addNewCard (data) {
   cardList.prepend(createElCard(data))
 };
 
+function chengeLikesActive (data, method) {
+  api.likeCard(data)
+  .then((res) => {
+    method(res)
+  })
+  .catch((err) => console.log(err))
+}
+
+function chengeLikesDelete (data, method) {
+  api.deleteLike(data)
+  .then((res) => {
+    method(res)
+  })
+  .catch((err) => console.log(err))
+}
+
+
 function submitCreateCard (data) {
   api.postNewCard(data)
-  .then((res) =>{
-      addNewCard(res)
+  .then((res) => {
+    addNewCard(res)
+    popupWithCreateCard.close()
   })
-  .catch((err) => {
-    console.log(err)
-  })
+  .catch((err) => console.log(err))
+  .finally(() => popupWithCreateCard.showDownloadMessage(false))
 };
 
 function submitDeleteCard (id, method) {
   api.deleteCard(id)
-  .then(
-    method
-  )
-  .catch((err) => {
-    console.log(err)
+  .then(() => {
+    method;
+    popupDelete.close();
   })
+  .catch((err) => console.log(err))
+  .finally(() => popupDelete.showDownloadMessage(false))
 };
 
 function submitProfile (data) {
@@ -126,10 +133,10 @@ function submitProfile (data) {
   .then((res) => {
     userInfo.getUserInfo();
     userInfo.setUserInfo(res);
+    popupWithProfile.close();
   })
-  .catch((err) => {
-    console.log(err)
-  })
+  .catch((err) => console.log(err))
+  .finally(() => popupWithProfile.showDownloadMessage(false))
 };
 
 function submitChengeAvatar (data) {
@@ -137,10 +144,12 @@ function submitChengeAvatar (data) {
   .then((res) => {
     userInfo.getUserInfo();
     userInfo.setUserInfo(res);
+    popupChangeAvatar.close();
   })
   .catch((err) => {
     console.log(err)
   })
+  .finally(() => popupChangeAvatar.shshowDownloadMessage(false))
 };
 
 const api = new Api ({
@@ -151,15 +160,15 @@ const api = new Api ({
   }
 });
 
-const userInfo = new UserInfo(nickNameSelector, aboutMeSelector)
-const popupChangeAvatar = new PopupWithForm (popupAvatar,submitChengeAvatar)
-const popupDelete = new PopupDelete (popupDeleteCard, submitDeleteCard)
+const userInfo = new UserInfo(nickNameSelector, aboutMeSelector);
+const popupDelete = new PopupDelete (popupDeleteCard, submitDeleteCard);
 const popupWithImage = new PopupWithImage (popupFullScreen);
 const avatarValidator = new FormValidator(listSelector, formChangeAvatar);
 const profileValidator = new FormValidator (listSelector,formProfileEdit);
 const createCardValidator = new FormValidator (listSelector,formCreateCard);
-const popupWithProfile = new PopupWithForm (popupProfile, submitProfile)
-const popupWithCreateCard = new PopupWithForm (popupCreateCard, submitCreateCard)
+const popupWithProfile = new PopupWithForm (popupProfile, submitProfile);
+const popupWithCreateCard = new PopupWithForm (popupCreateCard, submitCreateCard);
+const popupChangeAvatar = new PopupWithForm (popupAvatar,submitChengeAvatar);
 
 avatarValidator.enableValidation();
 profileValidator.enableValidation();

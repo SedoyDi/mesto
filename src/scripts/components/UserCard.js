@@ -2,8 +2,8 @@ import Card from "./Card.js";
 
 export default class UserCard extends Card{
     static _templateCard = document.querySelector('#template-userCard').content;
-    constructor(data, handleCardClick, colbackLikeButton, colbackDeleteCard) {
-        super (data, handleCardClick, colbackLikeButton);
+    constructor(data, iduser, handleCardClick, colbackLikeActive, colbackLikeDelete, colbackDeleteCard) {
+        super (data, iduser, handleCardClick, colbackLikeActive, colbackLikeDelete);
         this._colbackDeleteCard = colbackDeleteCard;
         this._cloneCard = UserCard._templateCard.querySelector('.card').cloneNode(true);
         this._placeTitle = this._cloneCard.querySelector('.card__title');

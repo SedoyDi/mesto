@@ -17,4 +17,7 @@ export default class UserInfo {
     getUserInfo () {
         return this._userInfo;
     }
+    getIdUser() {
+        return this._userInfo._id;
+    }
 }

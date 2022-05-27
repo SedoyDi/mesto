@@ -56,11 +56,19 @@ export default class Api {
             headers: this._headers,
         }).then(this._check);
     }
-    likeCard(data, id){
-        return fetch(`${this._url}/cards/${id}/likes`, {
+
+    likeCard(data){
+        return fetch(`${this._url}/cards/${data._id}/likes`, {
             method: 'PUT',
             headers: this._headers,
             body: JSON.stringify(data)
+        }).then(this._check);
+    }
+
+    deleteLike(data) {
+        return fetch(`${this._url}/cards/${data._id}/likes`, {
+            method: 'DELETE',
+            headers: this._headers,
         }).then(this._check);
     }
 }
