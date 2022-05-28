@@ -24,6 +24,9 @@ export default class Card {
     checkLikeCounter (data) {
         this._cardLikeCounter.textContent = data.likes.length;
     }
+    chengeDataLikeCounter(data) {
+        this._data.likes = data.likes;
+    }
     createCard () {
         this._plaseImg.src = this._data.link;
         this._plaseImg.alt = this._data.name;

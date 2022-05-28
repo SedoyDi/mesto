@@ -66,14 +66,16 @@ function createElCard(data) {
       (data) => {
         api.likeCard(data)
         .then((res) => {
-          newCard.checkLikeCounter(res)
+          newCard.chengeDataLikeCounter(res);
+          newCard.checkLikeCounter(res);
         })
         .catch((err) => console.log(err))
       },                              //colbackLikeActive
       (data) => {
         api.deleteLike(data)
         .then((res) => {
-          newCard.checkLikeCounter(res)
+          newCard.chengeDataLikeCounter(res);
+          newCard.checkLikeCounter(res);
         })
         .catch((err) => console.log(err))
       },                              //colbackLikeDelete
@@ -91,14 +93,16 @@ function createElCard(data) {
       (data) => {
         api.likeCard(data)
         .then((res) => {
-          newCard.checkLikeCounter(res)
+          newCard.chengeDataLikeCounter(res);
+          newCard.checkLikeCounter(res);
         })
         .catch((err) => console.log(err))
       },                              //colbackLikeActive
       (data) => {
         api.deleteLike(data)
         .then((res) => {
-          newCard.checkLikeCounter(res)
+          newCard.chengeDataLikeCounter(res);
+          newCard.checkLikeCounter(res);
         })
         .catch((err) => console.log(err))
       },                              //colbackLikeDelete
