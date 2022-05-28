@@ -62,9 +62,21 @@ function createElCard(data) {
     const newCard = new UserCard (
       data,
       idUser,
-      () => popupWithImage.open(data),
-      () => chengeLikesActive(data, newCard.checkLikeCounter),
-      () => chengeLikesDelete(data, newCard.checkLikeCounter),
+      () => popupWithImage.open(data),//handleCardClick
+      (data) => {
+        api.likeCard(data)
+        .then((res) => {
+          newCard.checkLikeCounter(res)
+        })
+        .catch((err) => console.log(err))
+      },                              //colbackLikeActive
+      (data) => {
+        api.deleteLike(data)
+        .then((res) => {
+          newCard.checkLikeCounter(res)
+        })
+        .catch((err) => console.log(err))
+      },                              //colbackLikeDelete
       openPopupDeleteCard,
     );
     newCard.checkLikeStatus();
@@ -75,9 +87,21 @@ function createElCard(data) {
     const newCard = new Card (
       data,
       idUser,
-      () => popupWithImage.open(data),
-      () => chengeLikesActive(data, newCard.checkLikeCounter),
-      () => chengeLikesDelete(data, newCard.checkLikeCounter),
+      () => popupWithImage.open(data),//handleCardClick
+      (data) => {
+        api.likeCard(data)
+        .then((res) => {
+          newCard.checkLikeCounter(res)
+        })
+        .catch((err) => console.log(err))
+      },                              //colbackLikeActive
+      (data) => {
+        api.deleteLike(data)
+        .then((res) => {
+          newCard.checkLikeCounter(res)
+        })
+        .catch((err) => console.log(err))
+      },                              //colbackLikeDelete
     );
     newCard.checkLikeStatus();
     newCard.checkLikeCounter(data);
@@ -89,23 +113,6 @@ function createElCard(data) {
 function addNewCard (data) {
   cardList.prepend(createElCard(data))
 };
-
-function chengeLikesActive (data, method) {
-  api.likeCard(data)
-  .then((res) => {
-    method(res)
-  })
-  .catch((err) => console.log(err))
-}
-
-function chengeLikesDelete (data, method) {
-  api.deleteLike(data)
-  .then((res) => {
-    method(res)
-  })
-  .catch((err) => console.log(err))
-}
-
 
 function submitCreateCard (data) {
   api.postNewCard(data)
