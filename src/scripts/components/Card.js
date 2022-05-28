@@ -10,6 +10,8 @@ export default class Card {
         this._plaseImg = this._cloneCard.querySelector('.card__image');
         this._likeButton = this._cloneCard.querySelector('.card__like-button');
         this._placeTitle = this._cloneCard.querySelector('.card__title');
+        this._cardLikeCounter = this._cloneCard.querySelector('.card__like-counter');
+
     };
     _test() {
         return this._data.likes.some((el) => el._id === this._idUser);
@@ -19,9 +21,8 @@ export default class Card {
             this._addlike();
         }
     }
-    checkLikeCounter(data) {
-        this._cardLikeCounter = this._cloneCard.querySelector('.card__like-counter');
-        this._cardLikeCounter.innerText = data.likes.length;
+    checkLikeCounter (data) {
+        this._cardLikeCounter.textContent = data.likes.length;
     }
     createCard () {
         this._plaseImg.src = this._data.link;
