@@ -29,7 +29,7 @@ export default class PopupWithForm extends Popup {
             evt.preventDefault();
             const data = this._getInputValues()
             this.showDownloadMessage(true);
-            this._submitFormСolback;
+            this._submitFormСolback(data);
         });
     }
     close() {
