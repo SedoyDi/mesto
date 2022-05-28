@@ -16,7 +16,7 @@ export default class UserCard extends Card{
     _setEventListeners() {
         super._setEventListeners();
         this._deleteButton.addEventListener('click', () => {
-            this._colbackDeleteCard({id: this._idCard, cloneCard: this._cloneCard})
+            this._colbackDeleteCard({id: this._data._id, cloneCard: this._cloneCard})
         });
     }
 };

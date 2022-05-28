@@ -15,7 +15,7 @@ export const aboutMeSelector = '.profile__profession';
 export const nickNameSelector = '.profile__nick-name';
 
 export const avatarInput = document.querySelector('#avatar-input');
-export const aboutMeInput = document.querySelector('#about-me-input');
+export const aboutMeInput = document.querySelector('#about-input');
 export const nickNameInput = document.querySelector('#name-input');
 
 export const buttonAddCard = document.querySelector('.profile__add-photo');

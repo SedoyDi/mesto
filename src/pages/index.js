@@ -32,7 +32,7 @@ import {
   avatarInput,
   aboutMeInput,
   nickNameInput,
-} from '../scripts/utils/utils.js';
+} from '../scripts/constants/constants.js';
 
 function openPopupDeleteCard (data) {
   popupDelete.open(data)
@@ -53,6 +53,7 @@ function openPopupCreateCard () {
 function openPopupChangeAvatar (data) {
   avatarInput.value = data.avatar;
   popupChangeAvatar.open();
+  avatarValidator.resetValidation();
 }
 
 function createElCard(data) {
@@ -66,7 +67,6 @@ function createElCard(data) {
       () => chengeLikesDelete(data, newCard.checkLikeCounter),
       openPopupDeleteCard,
     );
-    console.log(newCard.test())
     newCard.checkLikeStatus();
     newCard.checkLikeCounter(data);
     const cardElement = newCard.createCard() ;
@@ -79,7 +79,6 @@ function createElCard(data) {
       () => chengeLikesActive(data, newCard.checkLikeCounter),
       () => chengeLikesDelete(data, newCard.checkLikeCounter),
     );
-    console.log(newCard.test())
     newCard.checkLikeStatus();
     newCard.checkLikeCounter(data);
     const cardElement = newCard.createCard();

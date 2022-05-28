@@ -10,17 +10,17 @@ export default class Card {
         this._plaseImg = this._cloneCard.querySelector('.card__image');
         this._likeButton = this._cloneCard.querySelector('.card__like-button');
         this._placeTitle = this._cloneCard.querySelector('.card__title');
-        this._cardLikeCounter = this._cloneCard.querySelector('.card__like-counter');
     };
-    test() {
+    _test() {
         return this._data.likes.some((el) => el._id === this._idUser);
     }
     checkLikeStatus() {
-        if(this.test()){
+        if(this._test()){
             this._addlike();
         }
     }
     checkLikeCounter(data) {
+        this._cardLikeCounter = this._cloneCard.querySelector('.card__like-counter');
         this._cardLikeCounter.innerText = data.likes.length;
     }
     createCard () {
@@ -35,7 +35,7 @@ export default class Card {
             this._handleCardClick();
         });
         this._likeButton.addEventListener('click', () => {
-            if(!this.test()){
+            if(!this._test()){
             this._colbackLikeActive(this._data);
             this._toggleLike();
         }else{
