@@ -1,14 +1,14 @@
 import Popup from "./Popup.js";
 
 export default class PopupDelete extends Popup {
-    constructor (selector, colbackDeleteCard) {
-        super(selector)
+    constructor (popupSelector, handleDeleteCard) {
+        super(popupSelector)
         this._dataCard ={}
-        this._colbackDeleteCard = colbackDeleteCard;
-        this._textButton = this._popupSelector.querySelector('.submit-button');
+        this._handleDeleteCard = handleDeleteCard;
+        this._textButton = this._popup.querySelector('.submit-button');
         this._textButtonDefault = this._textButton.textContent;
-        this._closeButton = this._popupSelector.querySelector('.popup__close-button');
-        this._formElement = this._popupSelector.querySelector('.form');
+        this._closeButton = this._popup.querySelector('.popup__close-button');
+        this._formElement = this._popup.querySelector('.form');
       }
       open(data){
         this._dataCard = {id: data.id, cloneCard: data.cloneCard};
@@ -19,9 +19,9 @@ export default class PopupDelete extends Popup {
         this._dataCard.cloneCard.remove();
         this._dataCard.cloneCard = null;
       }
-      showDownloadMessage(isLoading) {
+      showLoadingMessage(isLoading) {
         if(isLoading){
-          this._textButton.innerText = "Сохранение...";
+          this._textButton.innerText = "Удаление...";
         }else{
           this._textButton.innerText = this._textButtonDefault;
         }
@@ -30,8 +30,8 @@ export default class PopupDelete extends Popup {
         super.setEventListeners();
         this._formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this.showDownloadMessage(true);
-            this._colbackDeleteCard(this._dataCard.id)
+            this.showLoadingMessage(true);
+            this._handleDeleteCard(this._dataCard.id)
         });
       }
 }

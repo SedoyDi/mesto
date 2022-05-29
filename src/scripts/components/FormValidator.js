@@ -27,19 +27,19 @@ export default class FormValidator {
     return !inputElement.validity.valid;
     })
   };
-  _inactiveSubmitButton () {
+  _disableSubmitButton () {
     this._submitButton.classList.add(this._listSelector.inactiveButtonClass);
     this._submitButton.setAttribute('disabled', 'disabled');
   };
-  _activeSubmitButton (){
+  _enableSubmitButton (){
     this._submitButton.classList.remove(this._listSelector.inactiveButtonClass);
     this._submitButton.removeAttribute('disabled');
   };
   _toggleButtonState = () => {
     if (this._hasInvalidInput()) {
-      this._inactiveSubmitButton ()
+      this._disableSubmitButton ()
     } else {
-      this._activeSubmitButton ()
+      this._enableSubmitButton ()
     }
   };
   _setEventListeners () {
