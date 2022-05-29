@@ -27,10 +27,10 @@ import {
 
   cardList,
 
+  avatarSelector,
   aboutMeSelector,
   nickNameSelector,
 
-  avatarInput,
   aboutMeInput,
   nickNameInput,
 } from '../scripts/constants/constants.js';
@@ -77,13 +77,12 @@ const api = new Api ({
 });
 
 const section = new Section ((el) => section.appendItems(createElCard(el)), cardList);
-const userInfo = new UserInfo(nickNameSelector, aboutMeSelector);
+const userInfo = new UserInfo(avatarSelector, nickNameSelector, aboutMeSelector);
 const popupDelete = new PopupDelete (popupDeleteCardSelector,
   (id) => {
   api.deleteCard(id)
-    .then((res) => {
+    .then(() => {
     popupDelete.deleteCard()
-    section.setItems(res)
     popupDelete.close();
   })
   .catch((err) => console.log(err))
@@ -99,7 +98,6 @@ const popupWithProfile = new PopupWithForm (popupProfileSelector,
   (data) => {
   api.patchDataUser(data)
   .then((res) => {
-    userInfo.getUserInfo();
     userInfo.setUserInfo(res);
     popupWithProfile.close();
   })
@@ -122,7 +120,6 @@ const popupChangeAvatar = new PopupWithForm (popupAvatarSelector,
   (data) => {
   api.patchAvatarUser(data)
   .then((res) => {
-    userInfo.getUserInfo();
     userInfo.setUserInfo(res);
     popupChangeAvatar.close();
   })

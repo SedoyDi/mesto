@@ -12,6 +12,7 @@ export const popupCreateCardSelector = '#create-card';
 export const popupDeleteCardSelector = '#delete-card';
 export const popupFullScreenSelector = '.popup_type_max-img';
 
+export const avatarSelector = '.profile__avatar';
 export const aboutMeSelector = '.profile__profession';
 export const nickNameSelector = '.profile__nick-name';
 
